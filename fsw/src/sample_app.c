@@ -61,7 +61,6 @@ void SAMPLE_APP_Main(void)
      * Testing ES
      */
     TESTING_APP_TESTING_ES_RegisterApp();
-    TESTING_APP_TESTING_ES_PerfLogEntry();
     TESTING_APP_TESTING_ES_GetAppID();
 
     /*

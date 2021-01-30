@@ -3,6 +3,7 @@
 
 #include "sample_app.h"
 #include <time.h> 
+#include "testing_custom_time_utility.h"
 
 extern SAMPLE_APP_Data_t SAMPLE_APP_Data;
 
@@ -15,15 +16,11 @@ void  TESTING_APP_Testing_EVS_SendEventWithAppId(void);
 void TESTING_APP_Testing_EVS_Register(void) {
     int32 status;
 
-    clock_t t; 
-    t = clock(); 
+    TIME_TRACKER tracker;
 
+    START_TIME_TRACKER(&tracker);
     status = CFE_EVS_Register(SAMPLE_APP_Data.EventFilters, SAMPLE_APP_EVENT_COUNTS, CFE_EVS_EventFilter_BINARY);
-
-    t = clock() - t; 
-    double time_taken = ((double)t)/CLOCKS_PER_SEC;
-    char execution_time[50];
-    snprintf(execution_time, 50, "%f", time_taken);
+    STOP_TIME_TRACKER(&tracker);
 
     if (status != CFE_SUCCESS)
     {
@@ -31,24 +28,17 @@ void TESTING_APP_Testing_EVS_Register(void) {
         return;
     }
 
-    char message[250] = "Testing App: Successfully registered with EVS. TESTING_APP_Testing_EVS_Register executed in ";
-    strcat(message, execution_time);
-    strcat(message, " seconds");
-
-    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "%s", message);
+    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "%s",  "Testing App: Successfully registered with EVS.");
+    REPORT_EXECUTION_TIME(&tracker, "TESTING_APP_Testing_EVS_Register");
 }
 
 void TESTING_APP_Testing_EVS_SendEvent(void) {
     int32 status;
-    clock_t t; 
-    t = clock(); 
+    TIME_TRACKER tracker;
 
+    START_TIME_TRACKER(&tracker);
     status = CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "Testing App: Testing sending event");
-
-    t = clock() - t; 
-    double time_taken = ((double)t)/CLOCKS_PER_SEC;
-    char execution_time[50];
-    snprintf(execution_time, 50, "%f", time_taken);
+    STOP_TIME_TRACKER(&tracker);
 
     if (status != CFE_SUCCESS)
     {
@@ -56,26 +46,20 @@ void TESTING_APP_Testing_EVS_SendEvent(void) {
         return;
     }
 
-    char message[250] = "Testing App: Successfully sent an event to EVS. TESTING_APP_Testing_EVS_SendEvent executed in ";
-    strcat(message, execution_time);
-    strcat(message, " seconds");
-
-    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "%s", message);
+    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "Testing App: Successfully sent an event to EVS.");
+    REPORT_EXECUTION_TIME(&tracker, "TESTING_APP_Testing_EVS_SendEvent");
 }
 
 void TESTING_APP_Testing_EVS_SendEventWithAppId(void) {
     int32 status;
-    clock_t t; 
-    t = clock(); 
+    TIME_TRACKER tracker;
 
     CFE_ES_ResourceID_t  AppId;
     CFE_ES_GetAppID(&AppId);
-    status = CFE_EVS_SendEventWithAppID(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, CFE_ES_ResourceID_ToInteger(AppId), "Testing App: Testing sending event with App ID");
 
-    t = clock() - t; 
-    double time_taken = ((double)t)/CLOCKS_PER_SEC;
-    char execution_time[50];
-    snprintf(execution_time, 50, "%f", time_taken);
+    START_TIME_TRACKER(&tracker);
+    status = CFE_EVS_SendEventWithAppID(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, CFE_ES_ResourceID_ToInteger(AppId), "Testing App: Testing sending event with App ID");
+    STOP_TIME_TRACKER(&tracker);
 
     if (status != CFE_SUCCESS)
     {
@@ -83,10 +67,8 @@ void TESTING_APP_Testing_EVS_SendEventWithAppId(void) {
         return;
     }
 
-    char message[250] = "Testing App: Successfully called SendEventWithAppId. TESTING_APP_Testing_EVS_SendEventWithAppId executed in ";
-    strcat(message, execution_time);
-    strcat(message, " seconds");
-    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "%s", message);
+    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "%s", "Testing App: Successfully called SendEventWithAppId.");
+    REPORT_EXECUTION_TIME(&tracker, "TESTING_APP_Testing_EVS_SendEventWithAppId");
 }
 
 #endif
