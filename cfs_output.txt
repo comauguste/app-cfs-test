@@ -1,0 +1,85 @@
+acompaore@Augustes-MBP app-cfs-test % docker run -it --privileged test_app
+root@8fa312a43d9d:/# echo 200 > /proc/sys/fs/mqueue/msg_max
+root@8fa312a43d9d:/# cd /cFS/build/exe/cpu1
+root@8fa312a43d9d:/cFS/build/exe/cpu1# ./core-cpu1
+CFE_PSP: Default Reset SubType = 1
+CFE_PSP: Default CPU ID = 1
+CFE_PSP: Default Spacecraft ID = 66
+CFE_PSP: Default CPU Name: cpu1
+OS_Posix_GetSchedulerParams():190:Policy 1: available, min-max: 1-99
+OS_Posix_GetSchedulerParams():190:Policy 2: available, min-max: 1-99
+OS_Posix_TaskAPI_Impl_Init():376:Selected policy 2 for RT tasks, root task = 99
+OS_Posix_TaskAPI_Impl_Init():392:Could not setschedparam in main thread: Operation not permitted (1)
+CFE_PSP: Starting the cFE with a POWER ON reset.
+CFE_PSP: Clearing out CFE CDS Shared memory segment.
+CFE_PSP: Clearing out CFE Reset Shared memory segment.
+CFE_PSP: Clearing out CFE User Reserved Shared memory segment.
+1980-001-03:05:20.40776 POWER ON RESET due to Power Cycle (Power Cycle).
+1980-001-03:05:20.40781 ES Startup: CFE_ES_Main in EARLY_INIT state
+CFE_PSP: CFE_PSP_AttachExceptions Called
+1980-001-03:05:20.40820 ES Startup: CFE_ES_Main entering CORE_STARTUP state
+1980-001-03:05:20.40821 ES Startup: Starting Object Creation calls.
+1980-001-03:05:20.40821 ES Startup: Calling CFE_ES_CDSEarlyInit
+1980-001-03:05:20.40839 ES Startup: Calling CFE_EVS_EarlyInit
+1980-001-03:05:20.40844 Event Log cleared following power-on reset
+1980-001-03:05:20.40844 ES Startup: Calling CFE_SB_EarlyInit
+1980-001-03:05:20.40846 ES Startup: Calling CFE_TIME_EarlyInit
+1980-012-14:03:20.00000 ES Startup: Calling CFE_TBL_EarlyInit
+1980-012-14:03:20.00012 ES Startup: Calling CFE_FS_EarlyInit
+EVS Port1 66/1/CFE_EVS 1: cFE EVS Initialized. cFE DEVELOPMENT BUILD v6.8.0-rc1+dev248 (Codename: Bootes), Last Official Release: cfe v6.7.0
+1980-012-14:03:20.15327 SB:Registered 4 events for filtering
+EVS Port1 66/1/CFE_SB 1: cFE SB Initialized
+EVS Port1 66/1/CFE_SB 14: No subscribers for MsgId 0x808,sender CFE_SB
+EVS Port1 66/1/CFE_ES 1: cFE ES Initialized
+EVS Port1 66/1/CFE_SB 14: No subscribers for MsgId 0x808,sender CFE_ES
+EVS Port1 66/1/CFE_ES 2: cFS Versions: cfe v6.8.0-rc1+dev248, osal v5.1.0-rc1+dev184, psp v1.5.0-rc150. cFE chksm 49946
+EVS Port1 66/1/CFE_SB 14: No subscribers for MsgId 0x808,sender CFE_ES
+EVS Port1 66/1/CFE_ES 91: Mission bootes-rc1-54-ge1d71e4-dirty.sample, CFE git version: v6.8.0-rc1-250-gc7363c8, OSAL git version: v5.1.0-rc1-186-g
+EVS Port1 66/1/CFE_SB 14: No subscribers for MsgId 0x808,sender CFE_ES
+EVS Port1 66/1/CFE_ES 92: Build 202101250411 root@buildkitsandbox
+EVS Port1 66/1/CFE_TIME 1: cFE TIME Initialized
+EVS Port1 66/1/CFE_TBL 1: cFE TBL Initialized. cFE DEVELOPMENT BUILD v6.8.0-rc1+dev248 (Codename: Bootes), Last Official Release: cfe v6.7.0
+1980-012-14:03:20.50777 ES Startup: Finished ES CreateObject table entries.
+1980-012-14:03:20.50778 ES Startup: CFE_ES_Main entering CORE_READY state
+1980-012-14:03:20.50782 ES Startup: Opened ES App Startup file: /cf/cfe_es_startup.scr
+1980-012-14:03:20.50791 ES Startup: Loading shared library: /cf/sample_lib.so
+SAMPLE Lib Initialized. Sample Lib DEVELOPMENT BUILD v1.2.0-rc1+dev10, Last Official Release: v1.1.0
+1980-012-14:03:20.50816 ES Startup: Loading file: /cf/sample_app.so, APP: SAMPLE_APP
+1980-012-14:03:20.50855 ES Startup: Loading file: /cf/ci_lab.so, APP: CI_LAB_APP
+1980-012-14:03:20.50888 ES Startup: Loading file: /cf/to_lab.so, APP: TO_LAB_APP
+1980-012-14:03:20.50912 ES Startup: Loading file: /cf/sch_lab.so, APP: SCH_LAB_APP
+EVS Port1 66/1/CFE_EVS 41: App SAMPLE_APP not registered with Event Services. Unable to send event.
+1980-012-14:03:20.56035 App SAMPLE_APP not registered with Event Services. Unable to send event.
+1980-012-14:03:20.56135 CI_LAB listening on UDP port: 1234
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully registered with EVS. TESTING_APP_Testing_EVS_Register executed in 0.000151 seconds
+EVS Port1 66/1/CI_LAB_APP 3: CI Lab Initialized. CI Lab App DEVELOPMENT BUILD v2.4.0-rc1+dev14, Last Official Release: v2.3.0
+SCH Lab Initialized. SCH Lab DEVELOPMENT BUILD v2.4.0-rc1+dev12, Last Official Release: v2.3.0
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Testing sending event
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully sent an event to EVS. TESTING_APP_Testing_EVS_SendEvent executed in 0.000559 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Testing sending event with App ID
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully called SendEventWithAppId. TESTING_APP_Testing_EVS_SendEventWithAppId executed in 0.000321 sec$
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Start Testing CFE_TIME_GetTime
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: CFE_TIME_GetTime output: 1001000
+EVS Port1 66/1/TO_LAB_APP 1: TO Lab Initialized. TO Lab DEVELOPMENT BUILD v2.4.0-rc1+dev21, Last Official Release: v2.3.0, Awaiting enable command.
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TIME_GetTime executed in 0.000002 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Start Testing CFE_TIME_GetTAI
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: CFE_TIME_GetTAI output: 1001000
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TIME_GetTAI executed in 0.000001 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Start Testing CFE_TIME_GetUTC
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: CFE_TIME_GetUTC output: 1000963
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TIME_GetUTC executed in 0.000001 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully called CFE_MSG_Init
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_CFE_MSG_Init executed in 0.000001 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully created message pipe
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_CFE_SB_CreatePipe executed in 0.000014 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully subscribed
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_SB_Subscribe executed in 0.000003 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully registered table SampleAppTable
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TBL_Register executed in 0.000005 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully loaded table
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TBL_Load executed in 0.000028 seconds
+EVS Port1 66/1/SAMPLE_APP 8: Testing App: Successfully got table info: size is: 4
+EVS Port1 66/1/SAMPLE_APP 8: TESTING_APP_Testing_TBL_Load executed in 0.000002 seconds
+1980-012-14:03:20.60983 ES Startup: CFE_ES_Main entering APPS_INIT state
+1980-012-14:03:20.60987 ES Startup: CFE_ES_Main entering OPERATIONAL state
+EVS Port1 66/1/CFE_TIME 21: Stop FLYWHEEL
