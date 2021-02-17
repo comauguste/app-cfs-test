@@ -8,7 +8,8 @@ RUN apt-get -y install build-essential
 RUN apt-get -y install cmake
 RUN apt-get -y install gcc
 
-RUN git clone https://github.com/nasa/cFS.git && \
+
+RUN git clone https://github.com/comauguste/cFS.git && \
     cd cFS && \
     git submodule init && \
     git submodule update

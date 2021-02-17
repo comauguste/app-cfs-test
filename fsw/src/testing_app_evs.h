@@ -54,11 +54,11 @@ void TESTING_APP_Testing_EVS_SendEventWithAppId(void) {
     int32 status;
     TIME_TRACKER tracker;
 
-    CFE_ES_ResourceID_t  AppId;
+    CFE_ResourceId_t  AppId;
     CFE_ES_GetAppID(&AppId);
 
     START_TIME_TRACKER(&tracker);
-    status = CFE_EVS_SendEventWithAppID(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, CFE_ES_ResourceID_ToInteger(AppId), "Testing App: Testing sending event with App ID");
+    status = CFE_EVS_SendEventWithAppID(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, CFE_ResourceId_ToInteger(AppId), "Testing App: Testing sending event with App ID");
     STOP_TIME_TRACKER(&tracker);
 
     if (status != CFE_SUCCESS)

@@ -32,7 +32,7 @@ void TESTING_APP_TESTING_ES_RegisterApp(void) {
 
 void TESTING_APP_TESTING_ES_GetAppID(void) {
     int32 status;
-    CFE_ES_ResourceID_t  AppId;
+    CFE_ResourceId_t  AppId;
     TIME_TRACKER tracker;
 
     START_TIME_TRACKER(&tracker);
@@ -45,7 +45,7 @@ void TESTING_APP_TESTING_ES_GetAppID(void) {
         return;
     }
     
-    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "Testing App: Successfully got App ID from Executive Service, App ID is: %ld", CFE_ES_ResourceID_ToInteger(AppId));
+    CFE_EVS_SendEvent(SAMPLE_APP_TESTING_INFO, CFE_EVS_EventType_INFORMATION, "Testing App: Successfully got App ID from Executive Service, App ID is: %ld", CFE_ResourceId_ToInteger(AppId));
     REPORT_EXECUTION_TIME(&tracker, "TESTING_APP_TESTING_ES_GetAppID");
 }
 
